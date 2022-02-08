@@ -15,7 +15,7 @@ import java.net.URL;
 public class GoogleSchedulingConfig {
 
     @SneakyThrows
-    @Scheduled(fixedRate = 1200000L) // 20 min
+    @Scheduled(fixedRate = 600000L) // 10 min
     public void pingGoogle() {
             URL url = new URL("https://www.google.com");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
