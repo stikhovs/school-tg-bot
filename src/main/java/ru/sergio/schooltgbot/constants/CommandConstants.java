@@ -29,7 +29,12 @@ public final class CommandConstants {
     public static final String EXTRA_CURRICULAR_BLANK_COMMAND = "extra-curricular-blank";
     public static final String PAID_SERVICE_BLANK_COMMAND = "paid-service-blank";
 
-    // Доп образование
+    // Extra
+    public static final String FREE_COURSES_SCHEDULE_COMMAND = "free-courses-schedule";
+    public static final String PAID_COURSES_SCHEDULE_COMMAND = "paid-courses-schedule";
+    public static final String COURSE_SIGN_IN_COMMAND = "course-sign-in";
+
+    // Olympics
     public static final String RUSSIA_OLYMPICS_COMMAND = "russia-olympics";
     public static final String MOSCOW_OLYMPICS_COMMAND = "moscow-olympics";
     public static final String OTHER_OLYMPICS_COMMAND = "other-olympics";

@@ -15,6 +15,10 @@ import ru.sergio.schooltgbot.handler.docs.regulation.SchoolRegulationsHandler;
 import ru.sergio.schooltgbot.handler.events.SchoolEventsHandler;
 import ru.sergio.schooltgbot.handler.events.educational.EducationalPlanHandler;
 import ru.sergio.schooltgbot.handler.events.media.PhotoVideoHandler;
+import ru.sergio.schooltgbot.handler.extra.ExtraCurricularHandler;
+import ru.sergio.schooltgbot.handler.extra.free.FreeCoursesHandler;
+import ru.sergio.schooltgbot.handler.extra.paid.PaidCoursesHandler;
+import ru.sergio.schooltgbot.handler.extra.sign_in.CourseSignInHandler;
 import ru.sergio.schooltgbot.handler.olympics.OlympicsHandler;
 import ru.sergio.schooltgbot.handler.olympics.enfuture.EnFutureHandler;
 import ru.sergio.schooltgbot.handler.olympics.moscow.MoscowOlympicsHandler;
@@ -36,6 +40,7 @@ import ru.sergio.schooltgbot.service.BotService;
 import ru.sergio.schooltgbot.util.TelegramUtil;
 
 import static ru.sergio.schooltgbot.constants.CommandConstants.*;
+import static ru.sergio.schooltgbot.util.TelegramUtil.getChatId;
 import static ru.sergio.schooltgbot.util.TelegramUtil.getUpdateText;
 
 
@@ -62,6 +67,10 @@ public class BotServiceImpl implements BotService {
     private final PrivilegeFoodBlankHandler privilegeFoodBlankHandler;
     private final SchoolRegulationsHandler schoolRegulationsHandler;
     private final AssessmentRuleHandler assessmentRuleHandler;
+    private final ExtraCurricularHandler extraCurricularHandler;
+    private final FreeCoursesHandler freeCoursesHandler;
+    private final PaidCoursesHandler paidCoursesHandler;
+    private final CourseSignInHandler courseSignInHandler;
     private final OlympicsHandler olympicsHandler;
     private final RussiaOlympicsHandler russiaOlympicsHandler;
     private final MoscowOlympicsHandler moscowOlympicsHandler;
@@ -81,6 +90,7 @@ public class BotServiceImpl implements BotService {
         if (text.equals("/start")) {
             return startHandler.handle(update);
         }
+
         // calendar
         if (text.equals(CALENDAR_COMMAND)) {
             return calendarHandler.handle(update);
@@ -140,6 +150,18 @@ public class BotServiceImpl implements BotService {
 
 
         // Доп образование
+        if (text.equals(EXTRA_CURRICULAR_COMMAND)) {
+            return extraCurricularHandler.handle(update);
+        }
+        if (text.equals(FREE_COURSES_SCHEDULE_COMMAND)) {
+            return freeCoursesHandler.handle(update);
+        }
+        if (text.equals(PAID_COURSES_SCHEDULE_COMMAND)) {
+            return paidCoursesHandler.handle(update);
+        }
+        if (text.equals(COURSE_SIGN_IN_COMMAND)) {
+            return courseSignInHandler.handle(update);
+        }
 
 
         // Олимпиады и конкурсы
@@ -187,6 +209,7 @@ public class BotServiceImpl implements BotService {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(TelegramUtil.getChatId(update));
         sendMessage.setText("Неизвестная команда " + TelegramUtil.getEmoji("mind_blown"));
+        log.error("Unknown command! Message text: {}, chatId: {}", getUpdateText(update), getChatId(update));
         return sendMessage;
     }
 
