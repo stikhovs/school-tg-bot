@@ -1,6 +1,6 @@
 bot:
-  name: stikhovs_bot
-  token: 2083619979:AAH2ai3rQHvv5wzlMjkzzSUHRycNYV7sQmQ
+  name: ${BOT_NAME}
+  token: ${BOT_TOKEN}
 
 logging:
   level:
