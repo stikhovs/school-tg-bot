@@ -1,4 +1,4 @@
-package ru.sergio.schooltgbot.handler.food.moskvenok;
+package ru.sergio.schooltgbot.handler.extra.moscow;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
@@ -9,12 +9,12 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 import ru.sergio.schooltgbot.util.TelegramUtil;
 
 @Service
-public class MoskvenokHandler implements BotHandler {
+public class MoscowOlympicsHandler implements BotHandler {
     @Override
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(TelegramUtil.getChatId(update));
-        sendMessage.setText("https://moskvenok.moscow/");
+        sendMessage.setText("https://mos.olimpiada.ru/");
         return sendMessage;
     }
 }

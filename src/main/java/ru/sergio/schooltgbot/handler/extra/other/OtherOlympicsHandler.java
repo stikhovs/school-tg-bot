@@ -1,4 +1,4 @@
-package ru.sergio.schooltgbot.handler.docs.blank;
+package ru.sergio.schooltgbot.handler.extra.other;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
@@ -12,10 +12,9 @@ import java.util.List;
 
 import static ru.sergio.schooltgbot.constants.CommandConstants.*;
 import static ru.sergio.schooltgbot.util.TelegramUtil.*;
-import static ru.sergio.schooltgbot.util.TelegramUtil.getEmoji;
 
 @Service
-public class DocsBlanksExampleHandler implements BotHandler {
+public class OtherOlympicsHandler implements BotHandler {
     @Override
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
@@ -24,10 +23,9 @@ public class DocsBlanksExampleHandler implements BotHandler {
 
         InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(List.of(
-                List.of(createInlineButton("Заявление об отсутствии в школе " + getEmoji("file_folder"), ABSENCE_BLANK_COMMAND)),
-                List.of(createInlineButton("Заявление на льготное питание " + getEmoji("memo"), PRIVILEGE_FOOD_BLANK_COMMAND)),
-                List.of(createInlineButton("Заявление на зачисление в коллектив доп. образования " + getEmoji("page_facing_up"), EXTRA_CURRICULAR_BLANK_COMMAND)),
-                List.of(createInlineButton("Договор на оказание платных услуг " + getEmoji("scroll"), PAID_SERVICE_BLANK_COMMAND))
+                List.of(createInlineButton("Высшая проба " + getEmoji("first_place_medal"), HIGHEST_PROBE_COMMAND)),
+                List.of(createInlineButton("Ломоносов " + getEmoji("nose") + getEmoji("punch"), LOMONOSOV_OLYMPICS_COMMAND)),
+                List.of(createInlineButton("Покори Воробьевы Горы " + getEmoji("mount_fuji"), VB_OLYMPICS_COMMAND))
         ));
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 

@@ -12,6 +12,17 @@ import ru.sergio.schooltgbot.handler.docs.DocumentsHandler;
 import ru.sergio.schooltgbot.handler.docs.assessment.AssessmentRuleHandler;
 import ru.sergio.schooltgbot.handler.docs.blank.*;
 import ru.sergio.schooltgbot.handler.docs.regulation.SchoolRegulationsHandler;
+import ru.sergio.schooltgbot.handler.events.SchoolEventsHandler;
+import ru.sergio.schooltgbot.handler.events.educational.EducationalPlanHandler;
+import ru.sergio.schooltgbot.handler.events.media.PhotoVideoHandler;
+import ru.sergio.schooltgbot.handler.extra.ExtraCurricularHandler;
+import ru.sergio.schooltgbot.handler.extra.enfuture.EnFutureHandler;
+import ru.sergio.schooltgbot.handler.extra.moscow.MoscowOlympicsHandler;
+import ru.sergio.schooltgbot.handler.extra.other.OtherOlympicsHandler;
+import ru.sergio.schooltgbot.handler.extra.other.olympics.HighestProbeHandler;
+import ru.sergio.schooltgbot.handler.extra.other.olympics.LomonosovHandler;
+import ru.sergio.schooltgbot.handler.extra.other.olympics.VorobyoviGoriHandler;
+import ru.sergio.schooltgbot.handler.extra.russia.RussiaOlympicsHandler;
 import ru.sergio.schooltgbot.handler.food.FoodHandler;
 import ru.sergio.schooltgbot.handler.food.cafeteria.CafeteriaHandler;
 import ru.sergio.schooltgbot.handler.food.cafeteria.uk.Uk_1_Handler;
@@ -22,8 +33,10 @@ import ru.sergio.schooltgbot.handler.food.menu.TodayMenuHandler;
 import ru.sergio.schooltgbot.handler.food.paid.PaidFoodHandler;
 import ru.sergio.schooltgbot.handler.start.StartHandler;
 import ru.sergio.schooltgbot.service.BotService;
+import ru.sergio.schooltgbot.util.TelegramUtil;
 
 import static ru.sergio.schooltgbot.constants.CommandConstants.*;
+import static ru.sergio.schooltgbot.util.TelegramUtil.getUpdateText;
 
 
 @Slf4j
@@ -49,6 +62,17 @@ public class BotServiceImpl implements BotService {
     private final PrivilegeFoodBlankHandler privilegeFoodBlankHandler;
     private final SchoolRegulationsHandler schoolRegulationsHandler;
     private final AssessmentRuleHandler assessmentRuleHandler;
+    private final ExtraCurricularHandler extraCurricularHandler;
+    private final RussiaOlympicsHandler russiaOlympicsHandler;
+    private final MoscowOlympicsHandler moscowOlympicsHandler;
+    private final OtherOlympicsHandler otherOlympicsHandler;
+    private final HighestProbeHandler highestProbeHandler;
+    private final LomonosovHandler lomonosovHandler;
+    private final VorobyoviGoriHandler vorobyoviGoriHandler;
+    private final EnFutureHandler enFutureHandler;
+    private final SchoolEventsHandler schoolEventsHandler;
+    private final EducationalPlanHandler educationalPlanHandler;
+    private final PhotoVideoHandler photoVideoHandler;
 
     @Override
     public PartialBotApiMethod<Message> handleUpdate(Update update) {
@@ -114,31 +138,52 @@ public class BotServiceImpl implements BotService {
             return assessmentRuleHandler.handle(update);
         }
 
-        return null;
-    }
 
-    private String getUpdateText(Update update) {
-        if (update.getMessage() != null) {
-            return update.getMessage().getText();
+        // Доп образование
+        if (text.equals(EXTRA_CURRICULAR_COMMAND)) {
+            return extraCurricularHandler.handle(update);
         }
-        return update.getCallbackQuery().getData();
+        if (text.equals(RUSSIA_OLYMPICS_COMMAND)) {
+            return russiaOlympicsHandler.handle(update);
+        }
+        if (text.equals(MOSCOW_OLYMPICS_COMMAND)) {
+            return moscowOlympicsHandler.handle(update);
+        }
+        if (text.equals(OTHER_OLYMPICS_COMMAND)) {
+            return otherOlympicsHandler.handle(update);
+        }
+        if (text.equals(HIGHEST_PROBE_COMMAND)) {
+            return highestProbeHandler.handle(update);
+        }
+        if (text.equals(LOMONOSOV_OLYMPICS_COMMAND)) {
+            return lomonosovHandler.handle(update);
+        }
+        if (text.equals(VB_OLYMPICS_COMMAND)) {
+            return vorobyoviGoriHandler.handle(update);
+        }
+        if (text.equals(EN_FUTURE_COMMAND)) {
+            return enFutureHandler.handle(update);
+        }
+
+
+        // events
+        if (text.equals(SCHOOL_EVENTS_COMMAND)) {
+            return schoolEventsHandler.handle(update);
+        }
+        if (text.equals(EDUCATIONAL_PLAN_COMMAND)) {
+            return educationalPlanHandler.handle(update);
+        }
+        if (text.equals(EVENTS_PHOTO_VIDEO_COMMAND)) {
+            return photoVideoHandler.handle(update);
+        }
+
+        return handleUnknown(update);
     }
 
-    @Override
-    public SendMessage getSendMessage(Update update) {
-        Message message = update.getMessage();
-        String firstName = message.getChat().getFirstName();
-        String lastName = message.getChat().getLastName();
-
-        String text = String.format("Hello, %s %s!", firstName, lastName);
-
-        return createSendMessage(message, text);
-    }
-
-    private SendMessage createSendMessage(Message message, String text) {
+    private PartialBotApiMethod<Message> handleUnknown(Update update) {
         SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(message.getChatId().toString());
-        sendMessage.setText(text);
+        sendMessage.setChatId(TelegramUtil.getChatId(update));
+        sendMessage.setText("Неизвестная команда " + TelegramUtil.getEmoji("mind_blown"));
         return sendMessage;
     }
 

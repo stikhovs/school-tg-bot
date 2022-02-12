@@ -29,5 +29,18 @@ public final class CommandConstants {
     public static final String EXTRA_CURRICULAR_BLANK_COMMAND = "extra-curricular-blank";
     public static final String PAID_SERVICE_BLANK_COMMAND = "paid-service-blank";
 
+    // Доп образование
+    public static final String RUSSIA_OLYMPICS_COMMAND = "russia-olympics";
+    public static final String MOSCOW_OLYMPICS_COMMAND = "moscow-olympics";
+    public static final String OTHER_OLYMPICS_COMMAND = "other-olympics";
+    public static final String HIGHEST_PROBE_COMMAND = "highest-probe";
+    public static final String LOMONOSOV_OLYMPICS_COMMAND = "lomonosov-olympics";
+    public static final String VB_OLYMPICS_COMMAND = "vb-olympics";
+    public static final String EN_FUTURE_COMMAND = "en-future";
+
+
+    // Events
+    public static final String EDUCATIONAL_PLAN_COMMAND = "educational-plan";
+    public static final String EVENTS_PHOTO_VIDEO_COMMAND = "photo-video";
 
 }

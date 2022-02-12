@@ -1,4 +1,4 @@
-package ru.sergio.schooltgbot.handler.docs.blank;
+package ru.sergio.schooltgbot.handler.extra;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
@@ -11,23 +11,23 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 import java.util.List;
 
 import static ru.sergio.schooltgbot.constants.CommandConstants.*;
+import static ru.sergio.schooltgbot.constants.CommandConstants.PAID_FOOD_DOC_COMMAND;
 import static ru.sergio.schooltgbot.util.TelegramUtil.*;
-import static ru.sergio.schooltgbot.util.TelegramUtil.getEmoji;
 
 @Service
-public class DocsBlanksExampleHandler implements BotHandler {
+public class ExtraCurricularHandler implements BotHandler {
     @Override
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(getChatId(update));
-        sendMessage.setText("Выберите нужную опцию " + getEmoji("point_down"));
+        sendMessage.setText("Выберите интересующую категорию");
 
         InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(List.of(
-                List.of(createInlineButton("Заявление об отсутствии в школе " + getEmoji("file_folder"), ABSENCE_BLANK_COMMAND)),
-                List.of(createInlineButton("Заявление на льготное питание " + getEmoji("memo"), PRIVILEGE_FOOD_BLANK_COMMAND)),
-                List.of(createInlineButton("Заявление на зачисление в коллектив доп. образования " + getEmoji("page_facing_up"), EXTRA_CURRICULAR_BLANK_COMMAND)),
-                List.of(createInlineButton("Договор на оказание платных услуг " + getEmoji("scroll"), PAID_SERVICE_BLANK_COMMAND))
+                List.of(createInlineButton("Всероссийская олимпиада школьников " + getEmoji("ru"), RUSSIA_OLYMPICS_COMMAND)),
+                List.of(createInlineButton("Московская олимпиада школьников " + getEmoji("mountain_cableway"), MOSCOW_OLYMPICS_COMMAND)),
+                List.of(createInlineButton("Перечневые олимпиады " + getEmoji("muscle"), OTHER_OLYMPICS_COMMAND)),
+                List.of(createInlineButton("Конференция 'Инженеры будущего' " + getEmoji("man_factory_worker"), EN_FUTURE_COMMAND))
         ));
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 

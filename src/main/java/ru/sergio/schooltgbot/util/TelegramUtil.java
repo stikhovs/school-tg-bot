@@ -34,6 +34,13 @@ public final class TelegramUtil {
         return update.getCallbackQuery().getMessage().getChatId().toString();
     }
 
+    public static String getUpdateText(Update update) {
+        if (update.getMessage() != null) {
+            return update.getMessage().getText();
+        }
+        return update.getCallbackQuery().getData();
+    }
+
     public static InlineKeyboardButton createInlineButton(String text, String callbackData) {
         InlineKeyboardButton button = new InlineKeyboardButton();
         button.setText(text);

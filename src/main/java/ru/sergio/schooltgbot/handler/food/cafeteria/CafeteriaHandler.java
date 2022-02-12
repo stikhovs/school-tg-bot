@@ -11,8 +11,7 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 import java.util.List;
 
 import static ru.sergio.schooltgbot.constants.CommandConstants.*;
-import static ru.sergio.schooltgbot.util.TelegramUtil.createInlineButton;
-import static ru.sergio.schooltgbot.util.TelegramUtil.getChatId;
+import static ru.sergio.schooltgbot.util.TelegramUtil.*;
 
 @Service
 public class CafeteriaHandler implements BotHandler {
@@ -20,7 +19,7 @@ public class CafeteriaHandler implements BotHandler {
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(getChatId(update));
-        sendMessage.setText("Выберите УК");
+        sendMessage.setText("Выберите УК " + getEmoji("point_down"));
 
         InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(List.of(List.of(
