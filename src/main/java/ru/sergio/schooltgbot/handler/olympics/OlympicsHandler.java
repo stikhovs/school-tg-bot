@@ -1,4 +1,4 @@
-package ru.sergio.schooltgbot.handler.extra.other;
+package ru.sergio.schooltgbot.handler.olympics;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
@@ -14,18 +14,19 @@ import static ru.sergio.schooltgbot.constants.CommandConstants.*;
 import static ru.sergio.schooltgbot.util.TelegramUtil.*;
 
 @Service
-public class OtherOlympicsHandler implements BotHandler {
+public class OlympicsHandler implements BotHandler {
     @Override
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(getChatId(update));
-        sendMessage.setText("Выберите нужную опцию " + getEmoji("point_down"));
+        sendMessage.setText("Выберите интересующую категорию");
 
         InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(List.of(
-                List.of(createInlineButton("Высшая проба " + getEmoji("first_place_medal"), HIGHEST_PROBE_COMMAND)),
-                List.of(createInlineButton("Ломоносов " + getEmoji("nose") + getEmoji("punch"), LOMONOSOV_OLYMPICS_COMMAND)),
-                List.of(createInlineButton("Покори Воробьевы Горы " + getEmoji("mount_fuji"), VB_OLYMPICS_COMMAND))
+                List.of(createInlineButton("Всероссийская олимпиада школьников " + getEmoji("ru"), RUSSIA_OLYMPICS_COMMAND)),
+                List.of(createInlineButton("Московская олимпиада школьников " + getEmoji("mountain_cableway"), MOSCOW_OLYMPICS_COMMAND)),
+                List.of(createInlineButton("Перечневые олимпиады " + getEmoji("muscle"), OTHER_OLYMPICS_COMMAND)),
+                List.of(createInlineButton("Конференция 'Инженеры будущего' " + getEmoji("man_factory_worker"), EN_FUTURE_COMMAND))
         ));
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 

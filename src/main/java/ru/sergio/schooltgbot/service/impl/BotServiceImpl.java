@@ -15,14 +15,14 @@ import ru.sergio.schooltgbot.handler.docs.regulation.SchoolRegulationsHandler;
 import ru.sergio.schooltgbot.handler.events.SchoolEventsHandler;
 import ru.sergio.schooltgbot.handler.events.educational.EducationalPlanHandler;
 import ru.sergio.schooltgbot.handler.events.media.PhotoVideoHandler;
-import ru.sergio.schooltgbot.handler.extra.ExtraCurricularHandler;
-import ru.sergio.schooltgbot.handler.extra.enfuture.EnFutureHandler;
-import ru.sergio.schooltgbot.handler.extra.moscow.MoscowOlympicsHandler;
-import ru.sergio.schooltgbot.handler.extra.other.OtherOlympicsHandler;
-import ru.sergio.schooltgbot.handler.extra.other.olympics.HighestProbeHandler;
-import ru.sergio.schooltgbot.handler.extra.other.olympics.LomonosovHandler;
-import ru.sergio.schooltgbot.handler.extra.other.olympics.VorobyoviGoriHandler;
-import ru.sergio.schooltgbot.handler.extra.russia.RussiaOlympicsHandler;
+import ru.sergio.schooltgbot.handler.olympics.OlympicsHandler;
+import ru.sergio.schooltgbot.handler.olympics.enfuture.EnFutureHandler;
+import ru.sergio.schooltgbot.handler.olympics.moscow.MoscowOlympicsHandler;
+import ru.sergio.schooltgbot.handler.olympics.other.OtherOlympicsHandler;
+import ru.sergio.schooltgbot.handler.olympics.other.olympics.HighestProbeHandler;
+import ru.sergio.schooltgbot.handler.olympics.other.olympics.LomonosovHandler;
+import ru.sergio.schooltgbot.handler.olympics.other.olympics.VorobyoviGoriHandler;
+import ru.sergio.schooltgbot.handler.olympics.russia.RussiaOlympicsHandler;
 import ru.sergio.schooltgbot.handler.food.FoodHandler;
 import ru.sergio.schooltgbot.handler.food.cafeteria.CafeteriaHandler;
 import ru.sergio.schooltgbot.handler.food.cafeteria.uk.Uk_1_Handler;
@@ -62,7 +62,7 @@ public class BotServiceImpl implements BotService {
     private final PrivilegeFoodBlankHandler privilegeFoodBlankHandler;
     private final SchoolRegulationsHandler schoolRegulationsHandler;
     private final AssessmentRuleHandler assessmentRuleHandler;
-    private final ExtraCurricularHandler extraCurricularHandler;
+    private final OlympicsHandler olympicsHandler;
     private final RussiaOlympicsHandler russiaOlympicsHandler;
     private final MoscowOlympicsHandler moscowOlympicsHandler;
     private final OtherOlympicsHandler otherOlympicsHandler;
@@ -140,8 +140,11 @@ public class BotServiceImpl implements BotService {
 
 
         // Доп образование
-        if (text.equals(EXTRA_CURRICULAR_COMMAND)) {
-            return extraCurricularHandler.handle(update);
+
+
+        // Олимпиады и конкурсы
+        if (text.equals(OLYMPIADS_COMMAND)) {
+            return olympicsHandler.handle(update);
         }
         if (text.equals(RUSSIA_OLYMPICS_COMMAND)) {
             return russiaOlympicsHandler.handle(update);

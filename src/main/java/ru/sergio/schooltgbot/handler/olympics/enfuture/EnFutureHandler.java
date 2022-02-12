@@ -1,4 +1,4 @@
-package ru.sergio.schooltgbot.handler.extra.other.olympics;
+package ru.sergio.schooltgbot.handler.olympics.enfuture;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
@@ -9,12 +9,12 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 import ru.sergio.schooltgbot.util.TelegramUtil;
 
 @Service
-public class HighestProbeHandler implements BotHandler {
+public class EnFutureHandler implements BotHandler {
     @Override
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(TelegramUtil.getChatId(update));
-        sendMessage.setText("https://olymp.hse.ru/mmo/");
+        sendMessage.setText("https://enfuture.ru/");
         return sendMessage;
     }
 }

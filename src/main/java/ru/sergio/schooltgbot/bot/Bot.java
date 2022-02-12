@@ -40,7 +40,7 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     @SneakyThrows
     public void onUpdateReceived(Update update) {
-        log.info("message text: {}, chatId: {}", getUpdateText(update), getChatId(update));
+        log.info("Message text: {}, chatId: {}", getUpdateText(update), getChatId(update));
         PartialBotApiMethod<Message> message = botService.handleUpdate(update);
         if (message.getClass().equals(SendMessage.class)) {
             execute((SendMessage)message);

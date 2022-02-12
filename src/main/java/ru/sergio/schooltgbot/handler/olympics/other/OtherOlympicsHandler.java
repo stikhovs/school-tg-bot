@@ -1,4 +1,4 @@
-package ru.sergio.schooltgbot.handler.extra;
+package ru.sergio.schooltgbot.handler.olympics.other;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
@@ -11,23 +11,21 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 import java.util.List;
 
 import static ru.sergio.schooltgbot.constants.CommandConstants.*;
-import static ru.sergio.schooltgbot.constants.CommandConstants.PAID_FOOD_DOC_COMMAND;
 import static ru.sergio.schooltgbot.util.TelegramUtil.*;
 
 @Service
-public class ExtraCurricularHandler implements BotHandler {
+public class OtherOlympicsHandler implements BotHandler {
     @Override
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(getChatId(update));
-        sendMessage.setText("Выберите интересующую категорию");
+        sendMessage.setText("Выберите нужную опцию " + getEmoji("point_down"));
 
         InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(List.of(
-                List.of(createInlineButton("Всероссийская олимпиада школьников " + getEmoji("ru"), RUSSIA_OLYMPICS_COMMAND)),
-                List.of(createInlineButton("Московская олимпиада школьников " + getEmoji("mountain_cableway"), MOSCOW_OLYMPICS_COMMAND)),
-                List.of(createInlineButton("Перечневые олимпиады " + getEmoji("muscle"), OTHER_OLYMPICS_COMMAND)),
-                List.of(createInlineButton("Конференция 'Инженеры будущего' " + getEmoji("man_factory_worker"), EN_FUTURE_COMMAND))
+                List.of(createInlineButton("Высшая проба " + getEmoji("first_place_medal"), HIGHEST_PROBE_COMMAND)),
+                List.of(createInlineButton("Ломоносов " + getEmoji("nose") + getEmoji("punch"), LOMONOSOV_OLYMPICS_COMMAND)),
+                List.of(createInlineButton("Покори Воробьевы Горы " + getEmoji("mount_fuji"), VB_OLYMPICS_COMMAND))
         ));
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 
