@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class NoHerokuIdlingConfig {
 
     @SneakyThrows
-    @Scheduled(fixedRate = 1200000L) // 20 min
+    @Scheduled(fixedRate = 900000L) // 15 min
     public void pingGoogle() {
         RestTemplate restTemplate = new RestTemplate();
         Object obj = restTemplate.getForObject("https://school-tg-bot.herokuapp.com/actuator/health", Object.class);
