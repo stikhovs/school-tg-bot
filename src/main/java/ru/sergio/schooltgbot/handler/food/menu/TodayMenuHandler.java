@@ -14,7 +14,7 @@ public class TodayMenuHandler implements BotHandler {
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(TelegramUtil.getChatId(update));
-        sendMessage.setText("https://google.com");
+        sendMessage.setText("https://sch2072v.mskobr.ru/daily-menu");
         return sendMessage;
     }
 }

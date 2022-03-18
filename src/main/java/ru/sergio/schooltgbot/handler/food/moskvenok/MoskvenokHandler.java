@@ -14,7 +14,7 @@ public class MoskvenokHandler implements BotHandler {
     public PartialBotApiMethod<Message> handle(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(TelegramUtil.getChatId(update));
-        sendMessage.setText("https://moskvenok.moscow/");
+        sendMessage.setText("https://moskvenok.mos.ru/payment/");
         return sendMessage;
     }
 }

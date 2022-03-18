@@ -10,7 +10,7 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 
 import java.util.List;
 
-import static ru.sergio.schooltgbot.constants.CommandConstants.*;
+import static ru.sergio.schooltgbot.constants.BotCommands.*;
 import static ru.sergio.schooltgbot.util.TelegramUtil.*;
 
 @Service
@@ -23,10 +23,9 @@ public class ExtraCurricularHandler implements BotHandler {
 
         InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(List.of(
-                List.of(createInlineButton("Расписание бюджетных кружков " + getEmoji("saxophone"), FREE_COURSES_SCHEDULE_COMMAND)),
-                List.of(createInlineButton("Расписание платных кружков " + getEmoji("violin"), PAID_COURSES_SCHEDULE_COMMAND)),
-                List.of(createInlineButton("Заявление на зачисление в коллектив доп. образования " + getEmoji("page_facing_up"), EXTRA_CURRICULAR_BLANK_COMMAND)),
-                List.of(createInlineButton("Записаться в кружок " + getEmoji("heavy_check_mark"), COURSE_SIGN_IN_COMMAND))
+                List.of(createInlineButton("Расписание кружков " + getEmoji("saxophone"), COURSES_SCHEDULE_COMMAND)),
+                List.of(createInlineButton("Заявление на доп. образование " + getEmoji("page_facing_up"), ZAYAVLENIE_NA_DOP_COMMAND)),
+                List.of(createInlineButton("Заявление на платные услуги " + getEmoji("heavy_check_mark"), PAID_SERVICE_BLANK_COMMAND))
         ));
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 

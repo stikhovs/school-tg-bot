@@ -10,7 +10,7 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 
 import java.util.List;
 
-import static ru.sergio.schooltgbot.constants.CommandConstants.*;
+import static ru.sergio.schooltgbot.constants.BotCommands.*;
 import static ru.sergio.schooltgbot.util.TelegramUtil.*;
 
 @Service
@@ -25,8 +25,7 @@ public class FoodHandler implements BotHandler {
         replyKeyboardMarkup.setKeyboard(List.of(
                 List.of(createInlineButton("Меню на сегодня " + getEmoji("carrot"), TODAY_MENU_COMMAND)),
                 List.of(createInlineButton("Пополнить карту Москвенок " + getEmoji("owl"), MOSKVENOK_COMMAND)),
-                List.of(createInlineButton("Расписание столовой " + getEmoji("date"), CAFETERIA_SCHEDULE_COMMAND)),
-                List.of(createInlineButton("Бланк заявления на платное питание " + getEmoji("moneybag"), PAID_FOOD_DOC_COMMAND))
+                List.of(createInlineButton("Расписание столовой " + getEmoji("date"), CAFETERIA_SCHEDULE_COMMAND))
         ));
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 

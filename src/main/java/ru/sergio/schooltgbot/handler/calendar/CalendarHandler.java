@@ -15,7 +15,7 @@ public class CalendarHandler implements BotHandler {
     @Override
     public SendPhoto handle(Update update) {
         SendPhoto sendPhoto = new SendPhoto();
-        InputStream img = getClass().getClassLoader().getResourceAsStream("img/calendar/perfectly-timed-cat-photos-funny-cover.jpg");
+        InputStream img = getClass().getClassLoader().getResourceAsStream("img/calendar/Кalendarnyy-uchebnyy-grafik-na-2021--2022-uchebnyy-god.pdf");
         InputFile imgFile = new InputFile(img, "calendar");
         sendPhoto.setCaption("Календарный график");
         sendPhoto.setPhoto(imgFile);

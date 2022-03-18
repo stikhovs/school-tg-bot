@@ -10,7 +10,7 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 
 import java.util.List;
 
-import static ru.sergio.schooltgbot.constants.CommandConstants.*;
+import static ru.sergio.schooltgbot.constants.BotCommands.*;
 import static ru.sergio.schooltgbot.util.TelegramUtil.*;
 
 @Service

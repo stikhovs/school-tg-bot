@@ -10,8 +10,7 @@ import ru.sergio.schooltgbot.handler.BotHandler;
 
 import java.util.List;
 
-import static ru.sergio.schooltgbot.constants.CommandConstants.*;
-import static ru.sergio.schooltgbot.constants.CommandConstants.EN_FUTURE_COMMAND;
+import static ru.sergio.schooltgbot.constants.BotCommands.*;
 import static ru.sergio.schooltgbot.util.TelegramUtil.*;
 
 @Service
@@ -24,8 +23,8 @@ public class SchoolEventsHandler implements BotHandler {
 
         InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(List.of(
-                List.of(createInlineButton("План воспитательной работы " + getEmoji("cricket_game"), EDUCATIONAL_PLAN_COMMAND)),
-                List.of(createInlineButton("Фото и видео с мероприятий " + getEmoji("film_frames"), EVENTS_PHOTO_VIDEO_COMMAND))
+                List.of(createInlineButton("Фото " + getEmoji("cricket_game"), EVENTS_PHOTO_COMMAND)),
+                List.of(createInlineButton("Видео " + getEmoji("film_frames"), EVENTS_VIDEO_COMMAND))
         ));
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 
