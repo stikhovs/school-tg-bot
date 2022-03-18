@@ -34,7 +34,7 @@ import java.util.Map;
 
 @Configuration
 @RequiredArgsConstructor
-public class MyStrategy {
+public class BotStrategy {
 
     private final StartHandler startHandler;
     private final CalendarHandler calendarHandler;
@@ -109,7 +109,6 @@ public class MyStrategy {
         strategiesMap.put(BotCommands.EVENTS_PHOTO_COMMAND, photoHandler);
         strategiesMap.put(BotCommands.EVENTS_VIDEO_COMMAND, videoHandler);
 
-        System.out.println(strategiesMap);
         return strategiesMap;
     }
 
